@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<main class="w-auto flex">
+			<div>
+				<button style="background-color: aquamarine" id="btn">
+					Send fetch
+				</button>
+			</div>
+		</main>
+		<script type="module">
+			import { setUpHeader } from "../js/layouts";
+
+			setUpHeader({ title: "page" });
+			document.querySelector("#btn").addEventListener("click", sendFetch);
+
+			async function sendFetch() {
+				let headersList = {
+					Accept: "*/*",
+					"User-Agent": "Thunder Client (https://www.thunderclient.com)",
+				};
+
+				let response = await fetch(
+					"https://pbcapi.cyclic.app/api/admin/competitions",
+					{
+						method: "GET",
+						headers: headersList,
+						credentials: "include",
+						mode: "cors",
+					}
+				);
+
+				let data = await response.text();
+				console.log(data);
+
+				/**
+				 * @type {HeadersInit}
+				 */
+				// let headersList = {
+				// 	Accept: "*/*",
+				// 	// "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+				// 	"Content-Type": "application/json",
+				// };
+
+				// let bodyContent = JSON.stringify({
+				// 	email: "ceo@admail.com",
+				// 	password: "pass@Presh423",
+				// 	// "password":"pass@Presh423"
+				// });
+
+				// let response = await fetch("https://pbcapi.cyclic.app/api/auth/admin-login", {
+				// 	method: "POST",
+				// 	body: bodyContent,
+				// 	headers: headersList,
+				// credentials: "include",
+				// mode: "cors",
+				// });
+
+				// let data = await response.text();
+				// console.log(data);
+				// cookieStore.get("authed").then((r) => console.log(r));
+			}
+		</script>
+	</body>
+</html>
