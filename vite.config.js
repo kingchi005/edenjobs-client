@@ -5,9 +5,9 @@ export default defineConfig({
 	build: {
 		rollupOptions: {
 			input: {
-				main: resolve(__dirname, "app/index.html"),
-				about: resolve(__dirname, "app/about/index.html"),
-				element: resolve(__dirname, "app/element/index.html"),
+				index: "./app/index.html",
+				about: "./app/about/index.html",
+				element: "./app/element/index.html",
 			},
 		},
 		outDir: "../dist",
